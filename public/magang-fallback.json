@@ -1,0 +1,140 @@
+{
+  "job-count": 15,
+  "jobs": [
+    {
+      "id": 1001,
+      "title": "Frontend Intern",
+      "company_name": "Nusantara Cloud",
+      "category": "Software Development",
+      "candidate_required_location": "Surabaya (Hybrid)",
+      "salary": "Rp 4.500.000",
+      "tags": ["React", "TypeScript", "CSS"]
+    },
+    {
+      "id": 1002,
+      "title": "Frontend Platform Intern",
+      "company_name": "Langit Kode",
+      "category": "Software Development",
+      "candidate_required_location": "Jakarta (Hybrid)",
+      "salary": "Rp 4.000.000",
+      "tags": ["React", "TypeScript", "CSS", "Docker"]
+    },
+    {
+      "id": 1003,
+      "title": "Web Developer Intern",
+      "company_name": "Ruang Digital",
+      "category": "Software Development",
+      "candidate_required_location": "Bandung (Remote)",
+      "salary": "Rp 3.200.000",
+      "tags": ["react", "CSS", "Node.js", "SQL"]
+    },
+    {
+      "id": 1004,
+      "title": "Backend Intern",
+      "company_name": "Arus Sistem",
+      "category": "Software Development",
+      "candidate_required_location": "Yogyakarta (Onsite)",
+      "salary": "Rp 3.000.000",
+      "tags": ["Go", "PostgreSQL", "Git"]
+    },
+    {
+      "id": 1005,
+      "title": "Mobile Developer Intern",
+      "company_name": "Saku Aplikasi",
+      "category": "Software Development",
+      "candidate_required_location": "Malang (Hybrid)",
+      "salary": "Rp 3.200.000",
+      "tags": ["TypeScript", "React Native", "Git"]
+    },
+    {
+      "id": 1006,
+      "title": "UI Designer Intern",
+      "company_name": "Studio Reka",
+      "category": "Design",
+      "candidate_required_location": "Bandung (Hybrid)",
+      "salary": "Rp 3.000.000",
+      "tags": ["Figma", "CSS", "Prototyping"]
+    },
+    {
+      "id": 1007,
+      "title": "Design System Intern",
+      "company_name": "Pola Antarmuka",
+      "category": "Design",
+      "candidate_required_location": "Jakarta (Remote)",
+      "salary": "Rp 3.800.000",
+      "tags": ["React", "CSS", "Figma"]
+    },
+    {
+      "id": 1008,
+      "title": "Data Analyst Intern",
+      "company_name": "Lensa Angka",
+      "category": "Data",
+      "candidate_required_location": "Semarang (Onsite)",
+      "salary": "Rp 2.800.000",
+      "tags": ["SQL", "Excel", "Python"]
+    },
+    {
+      "id": 1009,
+      "title": "Data Engineer Intern",
+      "company_name": "Aliran Data",
+      "category": "Data",
+      "candidate_required_location": "Surabaya (Hybrid)",
+      "salary": "Rp 3.600.000",
+      "tags": ["Python", "SQL", "Docker"]
+    },
+    {
+      "id": 1010,
+      "title": "Data Visualization Intern",
+      "company_name": "Peta Metrik",
+      "category": "Data",
+      "candidate_required_location": "Depok (Remote)",
+      "salary": "Rp 3.400.000",
+      "tags": ["TypeScript", "CSS", "D3.js", "SQL"]
+    },
+    {
+      "id": 1011,
+      "title": "QA Automation Intern",
+      "company_name": "Uji Karya",
+      "category": "Quality Assurance",
+      "candidate_required_location": "Tangerang (Hybrid)",
+      "salary": "Rp 3.500.000",
+      "tags": ["TypeScript", "Playwright", "Git"]
+    },
+    {
+      "id": 1012,
+      "title": "Software Tester Intern",
+      "company_name": "Cek Aplikasi",
+      "category": "Quality Assurance",
+      "candidate_required_location": "Solo (Onsite)",
+      "salary": "Rp 2.600.000",
+      "tags": ["Manual Testing", "Postman", "SQL"]
+    },
+    {
+      "id": 1013,
+      "title": "DevOps Intern",
+      "company_name": "Awan Rakit",
+      "category": "DevOps",
+      "candidate_required_location": "Jakarta (Hybrid)",
+      "salary": "Rp 4.200.000",
+      "tags": ["Linux", "Docker", "Git"]
+    },
+    {
+      "id": 1014,
+      "title": "Cloud Infrastructure Intern",
+      "company_name": "Simpul Komputasi",
+      "category": "DevOps",
+      "candidate_required_location": "Batam (Remote)",
+      "salary": "Rp 3.800.000",
+      "tags": ["Linux", "Networking", "Terraform"]
+    },
+    {
+      "id": 1015,
+      "title": "Full Stack Intern",
+      "company_name": "Nusantara Cloud",
+      "category": "Software Development",
+      "candidate_required_location": "Surabaya (Hybrid)",
+      "salary": "Rp 4.300.000",
+      "tags": ["React", "TypeScript", "Node.js", "PostgreSQL"]
+    }
+  ]
+}
