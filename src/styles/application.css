@@ -1,0 +1,86 @@
+/* Tampilan form manual + halaman detail (checklist dan riwayat ikut karena ada di dalam panel) */
+/* Pakai variabel warna dari index.css, jadi otomatis ikut mode terang/gelap */
+
+/* Kotak pembungkus tiap bagian. Di index.css teks root rata tengah, di sini dibalikin ke kiri */
+.application-panel {
+    text-align: left;
+    /* teks rata kiri biar form gampang dibaca */
+    border: 1px solid var(--border);
+    /* garis tepi tipis */
+    border-radius: 8px;
+    /* sudut membulat */
+    padding: 16px 20px;
+    /* jarak isi ke tepi kotak */
+    margin: 16px 24px;
+    /* jarak antar kotak */
+}
+
+/* Judul di dalam panel */
+.application-panel h2,
+.application-panel h3 {
+    color: var(--text-h);
+    /* warna judul */
+    margin: 12px 0 8px;
+    /* jarak atas bawah */
+}
+
+/* Paragraf kecil di dalam panel (tiap baris form dan data detail) */
+.application-panel p {
+    margin: 8px 0;
+}
+
+/* Semua input dan dropdown di dalam panel */
+.application-panel input,
+.application-panel select {
+    padding: 6px 10px;
+    /* ruang dalam */
+    border: 1px solid var(--border);
+    /* garis tepi */
+    border-radius: 6px;
+    /* sudut membulat */
+    background: transparent;
+    /* ikut warna latar halaman */
+    color: var(--text-h);
+    /* warna teks ketikan */
+    font: inherit;
+    /* samain font sama halaman */
+}
+
+/* Semua tombol di dalam panel */
+.application-panel button {
+    padding: 6px 12px;
+    border: 1px solid var(--accent-border);
+    /* garis tepi warna aksen */
+    border-radius: 6px;
+    background: var(--accent-bg);
+    /* latar aksen tipis */
+    color: var(--text-h);
+    font: inherit;
+    cursor: pointer;
+    /* kursor jadi tangan */
+}
+
+/* Tombol yang lagi nonaktif (contoh: Ubah Status sebelum milih tujuan) */
+.application-panel button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Pesan error validasi (yang pakai role="alert") */
+.application-panel [role='alert'] {
+    color: #dc2626;
+    /* merah */
+    font-size: 14px;
+}
+
+/* Daftar checklist dan riwayat */
+.application-panel ul {
+    padding-left: 20px;
+    /* geser dikit dari tepi */
+    margin: 8px 0;
+}
+
+.application-panel li {
+    margin: 4px 0;
+    /* jarak antar baris */
+}

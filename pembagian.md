@@ -1,0 +1,27 @@
+NADIA — Setup project, Profil Skill & Eksplorasi Lowongan, dan Interview Prep Timer
+1. Aku siapin repo public pweb-react-p01-2026, inisiasi Vite + React 19 + TypeScript strict, bikin struktur folder, masukin dataset fallback ke public/, dan pastiin project awal bisa dijalankan.
+2. Aku bikin tipe JobListing sama jobService.ts buat baca lowongan dari Remotive API dan dataset lokal. Aku juga pegang pilihan sumber data, tampilan loading, error, tombol Coba Lagi, opsi fallback, dan kondisi kalau hasilnya kosong. Fetch-nya pakai useEffect dan AbortController supaya request lama bisa dibatalkan saat ganti sumber.
+3. Aku bikin Profil Skill Kapten. Awalnya ada minimal tiga skill. Pengguna bisa tambah dan hapus skill, input duplikat ditolak, dan profilnya aku sambungin ke kaptenSkills yang disimpan lewat hook buatan Arul.
+4. Aku bikin fungsi Skill Match yang dipakai di katalog, pipeline, dan comparator. Fungsinya ngitung persentase kecocokan tanpa membedakan huruf besar/kecil, sekaligus menentukan skill mana yang cocok dan mana yang masih kurang. Kalau skill profil berubah, hasilnya harus langsung ikut berubah.
+5. Aku bikin useDebounce<T> sendiri, lalu pakai buat pencarian lowongan dengan jeda 400 ms. Aku juga kerjain filter kategori, urutan berdasarkan match tertinggi, serta kartu lowongan yang menampilkan warna badge dan rincian skill.
+6. Aku pegang alur Simpan ke Wishlist dari sisi katalog. Data API aku petakan ke format lamaran kita, lalu aku sambungkan ke fungsi pembuatan lamaran dari Dyfan. Kalau pasangan perusahaan dan posisi itu sudah ada, termasuk kalau ditambah lewat form manual, tombol di katalog harus otomatis jadi Sudah Dilamar.
+7. Aku bikin komponen Interview Prep Timer buat dipasang di halaman detail Dyfan. Isinya minimal lima pertanyaan, countdown 02:00 per soal, Start/Pause, Reset, dan Soal Berikutnya. Aku juga tanggung jawab buat ngecek intervalnya berhenti saat panel ditutup dan nggak jalan dua kali saat dibuka lagi.
+8. Aku kerjain tampilan dan pengujian halaman eksplorasi, profil skill, dan timer. Pas demo aku pegang testcase 1, 2, 3, bagian katalog di 4, dan 9.
+
+DYFAN — Skema Lamaran, Form Tambah Manual, dan Detail Lamaran
+1. Kamu pegang skema data utama Application, termasuk status, mode kerja, CV, tanggal melamar, jadwal interview, gaji offer, lastUpdatedAt, checklist, dan activity log. Ini yang nanti jadi acuan bertiga supaya nama dan tipe field kita sama.
+2. Kamu bikin fungsi pembuatan lamaran yang dipakai bareng oleh form manual dan tombol Wishlist punyaku. Di sini juga ada pengecekan duplikat berdasarkan perusahaan + posisi, tanpa membedakan kapital, serta log pertama saat lamaran dibuat.
+3. Kamu bikin form manual yang semua inputnya terkontrol. Status awal bisa Wishlist atau Applied. Kalau pilih Applied, field versi CV dan tanggal melamar muncul dan wajib diisi. Kalau submit gagal, pakai useRef buat fokus ke input pertama yang bermasalah.
+4. Kamu pegang aturan perpindahan status dan tampilan detailnya. Pilihan tujuan harus sesuai diagram soal. Saat pindah ke Applied wajib isi CV dan tanggal, ke Interview wajib isi jadwal, dan ke Offer wajib ada gaji lebih dari nol serta mode kerja. Setiap perpindahan yang berhasil memperbarui waktu status dan menambah activity log.
+5. Kamu bikin checklist per lamaran yang bisa ditambah, dicentang, dan dihapus, lengkap dengan progress X/Y. Update-nya harus immutable supaya mengubah checklist satu lamaran nggak ikut mengubah lamaran lain.
+6. Kamu bikin tampilan riwayat aktivitas dan input catatan manual. Di halaman detail, kamu sediain tempat buat komponen timer yang aku kerjain. Jadi logika timer dan pengujiannya tetap bagianku.
+7. Kamu kerjain tampilan dan pengujian form serta halaman detail. Pas demo kamu pegang bagian form di testcase 4, lalu testcase 5 dan 8.
+
+ARUL — Penyimpanan Data, War Room Pipeline, Undo Delete, dan Dashboard Offer
+1. Kamu bikin useLocalStorage<T> sendiri dan menyiapkan state utama applications sama kaptenSkills. Jadi data dari katalog, form, dan detail bisa dipakai di halaman lain dan tetap ada setelah refresh.
+2. Kamu bikin daftar lamaran di War Room. Tiap lamaran menampilkan status, versi CV, progress checklist, dan Skill Match. Untuk persentase match tinggal pakai fungsi yang aku buat, dan untuk detail tinggal buka komponen Dyfan.
+3. Kamu bikin pencarian, filter status, toggle Hanya Rawan Ghosting, serta sorting terbaru, interview terdekat, dan offer tertinggi. Filter-filternya harus tetap jalan kalau dipakai bersamaan.
+4. Kamu pegang dua aturan waktu. Pertama, badge Rawan Ghosting untuk Applied/Screening yang statusnya nggak berubah lebih dari 14 hari, termasuk tombol Simulasi +15 Hari. Kedua, banner bentrok kalau ada dua interview berselisih kurang dari 60 menit. Khusus banner, pengecekannya dari seluruh lamaran supaya tetap muncul meskipun daftar sedang difilter.
+5. Kamu bikin Hapus dan Undo 5 detik. Yang dikembalikan harus lamaran utuh beserta checklist dan log. ID timeout disimpan di useRef supaya kalau hapus dua kali berurutan, timer pertama nggak menutup toast kedua.
+6. Kamu bikin lima kartu statistik dan Offer Comparator. Statistik dihitung langsung dari data lamaran. Untuk comparator, pengguna pilih dua offer berbeda, lalu tampil perbandingan gaji, mode kerja, match, skor berbobot 50%–25%–25%, dan rekomendasi terbaik. Kalau offer belum cukup, tampilkan pesan kosong.
+7. Kamu kerjain tampilan dan pengujian pipeline, toast, dashboard, dan comparator. Pas demo kamu pegang testcase 6, 7, dan 10.
