@@ -12,6 +12,7 @@ export interface NewApplicationInput {
     cvVersion?: string | null // wajib diisi kalau status awal Applied
     appliedDate?: string | null // wajib diisi kalau status awal Applied
     workMode?: WorkMode | null // opsional saat membuat lamaran
+    requiredSkills?: string[] // skill lowongan
 }
 
 // Hasil fungsi: berhasil membawa lamaran baru, gagal membawa pesan error
@@ -78,6 +79,7 @@ export function createApplication(
         id: makeId(), // id unik lamaran
         company, // nama perusahaan yang sudah dirapikan
         role, // nama posisi yang sudah dirapikan
+        requiredSkills: input.requiredSkills?.map((skill) => skill.trim()).filter(Boolean) ?? [],
         status: input.status, // Wishlist atau Applied
         workMode: input.workMode ?? null, // kalau tidak diisi, jadi null
         cvVersion: input.status === 'Applied' ? input.cvVersion!.trim() : null, // hanya terisi kalau Applied

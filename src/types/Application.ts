@@ -8,6 +8,7 @@ export const APPLICATION_STATUSES = [
     'Interview', // sudah dijadwalkan interview
     'Offer', // sudah mendapat tawaran
     'Rejected', // ditolak
+    'Ghosted', // tidak ada respon
 ] as const // "as const" mengunci isi array supaya jadi tipe literal
 
 // Membuat tipe dari isi array di atas: 'Wishlist' | 'Applied' | ...
@@ -38,6 +39,7 @@ export interface Application {
     id: string // pengenal unik lamaran
     company: string // nama perusahaan, juga dipakai katalog Nadia
     role: string // posisi yang dilamar, juga dipakai katalog Nadia
+    requiredSkills: string[] // skill yang dibutuhkan lowongan
     status: ApplicationStatus // tahap lamaran saat ini, harus salah satu dari daftar status
 
     workMode: WorkMode | null // mode kerja, wajib terisi saat Offer

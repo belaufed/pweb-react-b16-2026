@@ -24,6 +24,7 @@ export function ManualApplicationForm({ applications, onAdd }: ManualApplication
     const [status, setStatus] = useState<'Wishlist' | 'Applied'>('Wishlist') // status awal, default Wishlist
     const [cvVersion, setCvVersion] = useState('') // isi input versi CV (cuma muncul kalau Applied)
     const [appliedDate, setAppliedDate] = useState('') // isi input tanggal melamar (cuma muncul kalau Applied)
+    const [requiredSkills, setRequiredSkills] = useState('')
     const [errors, setErrors] = useState<Errors>({}) // pesan error per field
 
     // Ref buat fokus otomatis ke input yang bermasalah ===
@@ -69,6 +70,7 @@ export function ManualApplicationForm({ applications, onAdd }: ManualApplication
             status, // Wishlist atau Applied
             cvVersion: status === 'Applied' ? cvVersion : null, // CV cuma dikirim kalau Applied
             appliedDate: status === 'Applied' ? appliedDate : null, // tanggal cuma dikirim kalau Applied
+            requiredSkills: requiredSkills.split(',').map((skill) => skill.trim()).filter(Boolean),
         })
 
         // Gagal di sini biasanya karena duplikat (perusahaan + posisi udah ada)
@@ -85,6 +87,7 @@ export function ManualApplicationForm({ applications, onAdd }: ManualApplication
         setStatus('Wishlist') // balik ke status awal default
         setCvVersion('') // kosongin versi CV
         setAppliedDate('') // kosongin tanggal
+        setRequiredSkills('')
         setErrors({}) // hapus semua pesan error
     }
 
@@ -164,6 +167,17 @@ export function ManualApplicationForm({ applications, onAdd }: ManualApplication
                         </p>
                     </>
                 )}
+
+                <p>
+                    <label>
+                        Required Skills (pisahkan dengan koma){' '}
+                        <input
+                            value={requiredSkills}
+                            onChange={(event) => setRequiredSkills(event.target.value)}
+                            placeholder="React, TypeScript, CSS"
+                        />
+                    </label>
+                </p>
 
                 <button type="submit">Tambah Lamaran</button>
             </form>

@@ -10,6 +10,7 @@ export const allowedTransitions: Record<ApplicationStatus, ApplicationStatus[]> 
     Interview: ['Offer', 'Rejected'], // abis interview: dapet offer atau ditolak
     Offer: [], // udah offer, nggak ada tujuan lagi
     Rejected: [], // udah ditolak, selesai
+    Ghosted: ['Screening'],
 }
 
 // Data tambahan yang diisi user pas pindah status. Semua string karena asalnya dari input form.
