@@ -46,6 +46,24 @@
     /* samain font sama halaman */
 }
 
+/* Biar teks pilihan dropdown selalu terlihat jelas, baik mode terang maupun gelap */
+.application-panel select,
+.war-room select,
+.dashboard select,
+.application-panel option,
+.war-room option,
+.dashboard option {
+    color: #08060d;
+    background: #ffffff;
+}
+
+.application-panel select option:checked,
+.war-room select option:checked,
+.dashboard select option:checked {
+    color: #08060d;
+    background: #e8f0ff;
+}
+
 /* Semua tombol di dalam panel */
 .application-panel button {
     padding: 6px 12px;
