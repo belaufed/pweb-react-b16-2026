@@ -54,22 +54,24 @@ export function InterviewPrepTimer() {
   }
 
   return (
-    <section aria-label="Latihan interview">
+    <section className="interview-timer-card" aria-label="Latihan interview">
       <h2>Latihan Interview</h2>
-      <p>Soal {questionIndex + 1} dari {questions.length}</p>
-      <p>{questions[questionIndex]}</p>
+      <p className="timer-step">Soal {questionIndex + 1} dari {questions.length}</p>
+      <p className="timer-question">{questions[questionIndex]}</p>
 
-      <p role="timer" aria-label="Sisa waktu">
+      <p className="timer-display" role="timer" aria-label="Sisa waktu">
         <strong>{formatTime(secondsLeft)}</strong>
       </p>
 
-      {timeIsUp && <p role="status">Waktu habis. Ulangi soal atau lanjut ke soal berikutnya.</p>}
+      {timeIsUp && <p className="timer-alert" role="status">Waktu habis. Ulangi soal atau lanjut ke soal berikutnya.</p>}
 
-      <button type="button" onClick={toggleTimer} disabled={timeIsUp}>
-        {isRunning && !timeIsUp ? 'Pause' : 'Start'}
-      </button>{' '}
-      <button type="button" onClick={resetTimer}>Reset</button>{' '}
-      <button type="button" onClick={nextQuestion}>Soal Berikutnya</button>
+      <div className="button-group">
+        <button type="button" onClick={toggleTimer} disabled={timeIsUp}>
+          {isRunning && !timeIsUp ? 'Pause' : 'Start'}
+        </button>{' '}
+        <button type="button" onClick={resetTimer}>Reset</button>{' '}
+        <button type="button" onClick={nextQuestion}>Soal Berikutnya</button>
+      </div>
     </section>
   )
 }

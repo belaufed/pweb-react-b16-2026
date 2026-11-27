@@ -146,20 +146,28 @@ export function WarRoom({ applications, skills, onChange, onSelect }: WarRoomPro
             const ghosting = isGhostingApplication(application)
             return (
               <article className="application-card" key={application.id}>
-                <h3>{application.company}</h3>
-                <p>{application.role}</p>
-                <p>Status: <strong>{application.status}</strong></p>
-                {ghosting && <span className="ghosting-badge">Rawan Ghosting</span>}
-                <p>CV: {application.cvVersion ?? '-'}</p>
-                <p>Checklist: {checklistDone}/{application.checklist.length}</p>
-                <p>Skill Match: {match.score}%</p>
-                {(application.status === 'Applied' || application.status === 'Screening') && (
-                  <button type="button" onClick={() => simulateGhosting(application)}>
-                    Simulasi +15 Hari
-                  </button>
-                )}
-                <button type="button" onClick={() => onSelect(application.id)}>Lihat Detail</button>
-                <button type="button" onClick={() => deleteApplication(application)}>Hapus</button>
+                <div className="application-card-top">
+                  <div>
+                    <h3>{application.company}</h3>
+                    <p className="application-role">{application.role}</p>
+                  </div>
+                  {ghosting && <span className="ghosting-badge">Rawan Ghosting</span>}
+                </div>
+                <div className="application-card-details">
+                  <p>Status: <strong>{application.status}</strong></p>
+                  <p>CV: {application.cvVersion ?? '-'}</p>
+                  <p>Checklist: {checklistDone}/{application.checklist.length}</p>
+                  <p>Skill Match: {match.score}%</p>
+                </div>
+                <div className="application-card-actions">
+                  {(application.status === 'Applied' || application.status === 'Screening') && (
+                    <button type="button" onClick={() => simulateGhosting(application)}>
+                      Simulasi +15 Hari
+                    </button>
+                  )}
+                  <button type="button" onClick={() => onSelect(application.id)}>Lihat Detail</button>
+                  <button type="button" className="danger-button" onClick={() => deleteApplication(application)}>Hapus</button>
+                </div>
               </article>
             )
           })}

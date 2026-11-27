@@ -43,12 +43,12 @@ export function ActivityLogPanel({ logs, onChange }: ActivityLogPanelProps) {
     const newestFirst = [...logs].reverse()
 
     return (
-        <section>
+        <section className="detail-subcard">
             <h3>Riwayat Aktivitas</h3>
 
-            {logs.length === 0 && <p>Belum ada aktivitas.</p>}
+            {logs.length === 0 && <p className="muted-text">Belum ada aktivitas.</p>}
 
-            <ul>
+            <ul className="activity-log-list">
                 {newestFirst.map((log) => (
                     <li key={log.id}>
                         {/* waktu dari ISO diubah jadi format lokal Indonesia */}
@@ -57,7 +57,7 @@ export function ActivityLogPanel({ logs, onChange }: ActivityLogPanelProps) {
                 ))}
             </ul>
 
-            <form onSubmit={handleAddNote}>
+            <form className="inline-add-form" onSubmit={handleAddNote}>
                 <input
                     value={note}
                     onChange={(event) => setNote(event.target.value)} // update state tiap ngetik

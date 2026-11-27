@@ -1,197 +1,708 @@
-/* Tampilan form manual + halaman detail (checklist dan riwayat ikut karena ada di dalam panel) */
-/* Pakai variabel warna dari index.css, jadi otomatis ikut mode terang/gelap */
+/* Layout Utama & Navigasi */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
 
-/* Kotak pembungkus tiap bagian. Di index.css teks root rata tengah, di sini dibalikin ke kiri */
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.app-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.app-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.app-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.app-nav button {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-subtle);
+  color: var(--text-h);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.app-nav button:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+.app-nav button.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+}
+
+/* Susunan Halaman Eksplorasi & Pipeline */
+.explore-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.explore-top-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.35fr);
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .explore-top-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pipeline-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Panel Umum */
 .application-panel {
-    text-align: left;
-    /* teks rata kiri biar form gampang dibaca */
-    border: 1px solid var(--border);
-    /* garis tepi tipis */
-    border-radius: 8px;
-    /* sudut membulat */
-    padding: 16px 20px;
-    /* jarak isi ke tepi kotak */
-    margin: 16px 24px;
-    /* jarak antar kotak */
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin: 0;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-/* Judul di dalam panel */
-.application-panel h2,
+.application-panel h2 {
+  color: var(--text-h);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
 .application-panel h3 {
-    color: var(--text-h);
-    /* warna judul */
-    margin: 12px 0 8px;
-    /* jarak atas bawah */
+  color: var(--text-h);
+  margin: 4px 0;
 }
 
-/* Paragraf kecil di dalam panel (tiap baris form dan data detail) */
 .application-panel p {
-    margin: 8px 0;
+  margin: 0;
 }
 
-/* Semua input dan dropdown di dalam panel */
-.application-panel input,
+/* Elemen Form & Tombol */
+.application-panel form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.application-panel form > p,
+.status-transition-form > p {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.application-panel label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.application-panel input:not([type='checkbox']),
 .application-panel select {
-    padding: 6px 10px;
-    /* ruang dalam */
-    border: 1px solid var(--border);
-    /* garis tepi */
-    border-radius: 6px;
-    /* sudut membulat */
-    background: transparent;
-    /* ikut warna latar halaman */
-    color: var(--text-h);
-    /* warna teks ketikan */
-    font: inherit;
-    /* samain font sama halaman */
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-subtle);
+  color: var(--text-h);
+  font: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Biar teks pilihan dropdown selalu terlihat jelas, baik mode terang maupun gelap */
+.application-panel input:not([type='checkbox']):focus,
+.application-panel select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+/* Biar teks pilihan dropdown selalu terlihat jelas */
 .application-panel select,
 .war-room select,
 .dashboard select,
 .application-panel option,
 .war-room option,
 .dashboard option {
-    color: #08060d;
-    background: #ffffff;
+  color: #08060d;
+  background: #ffffff;
 }
 
 .application-panel select option:checked,
 .war-room select option:checked,
 .dashboard select option:checked {
-    color: #08060d;
-    background: #e8f0ff;
+  color: #08060d;
+  background: #e8f0ff;
 }
 
-/* Semua tombol di dalam panel */
-.application-panel button {
-    padding: 6px 12px;
-    border: 1px solid var(--accent-border);
-    /* garis tepi warna aksen */
-    border-radius: 6px;
-    background: var(--accent-bg);
-    /* latar aksen tipis */
-    color: var(--text-h);
-    font: inherit;
-    cursor: pointer;
-    /* kursor jadi tangan */
-}
-
-/* Tombol yang lagi nonaktif (contoh: Ubah Status sebelum milih tujuan) */
-.application-panel button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-/* Pesan error validasi (yang pakai role="alert") */
-.application-panel [role='alert'] {
-    color: #dc2626;
-    /* merah */
-    font-size: 14px;
-}
-
-/* Daftar checklist dan riwayat */
-.application-panel ul {
-    padding-left: 20px;
-    /* geser dikit dari tepi */
-    margin: 8px 0;
-}
-
-.application-panel li {
-    margin: 4px 0;
-    /* jarak antar baris */
-}
-
-.app-nav {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin: 16px 24px;
-}
-
-.app-nav button,
+.application-panel button,
 .war-room button,
 .dashboard button {
-    padding: 6px 12px;
-    border: 1px solid var(--accent-border);
-    border-radius: 6px;
-    background: var(--accent-bg);
-    color: var(--text-h);
-    cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  background: var(--accent-bg);
+  color: var(--text-h);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  align-self: flex-start;
 }
 
+.application-panel button:hover:not(:disabled),
+.war-room button:hover:not(:disabled),
+.dashboard button:hover:not(:disabled) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.application-panel button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.danger-button {
+  border-color: rgba(220, 38, 38, 0.35) !important;
+  background: rgba(220, 38, 38, 0.08) !important;
+  color: #dc2626 !important;
+}
+
+.danger-button:hover:not(:disabled) {
+  background: #dc2626 !important;
+  border-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+/* Pesan Error & Muted Text */
+.application-panel [role='alert'] {
+  color: #dc2626;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.muted-text {
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+/* Profil Skill Kapten */
+.input-action-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.input-action-row input {
+  flex: 1;
+}
+
+.input-action-row button {
+  white-space: nowrap;
+  align-self: stretch;
+}
+
+.skill-chip-list {
+  list-style: none;
+  padding: 0 !important;
+  margin: 4px 0 0 !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px 5px 12px;
+  border-radius: 999px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  color: var(--text-h);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0 !important;
+}
+
+.chip-remove-btn {
+  padding: 2px 8px !important;
+  font-size: 0.78rem !important;
+  border-radius: 999px !important;
+}
+
+/* Katalog Lowongan */
+.catalog-controls {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.8fr) minmax(240px, 1.6fr) minmax(180px, 1fr);
+  gap: 12px;
+  align-items: end;
+  padding: 14px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .catalog-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+.catalog-summary,
+.status-banner {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.error-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  background: rgba(220, 38, 38, 0.06);
+  border-radius: 10px;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 16px;
+}
+
+.job-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.job-card:hover {
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-md);
+}
+
+.job-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.job-card-header h3 {
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.job-card-meta {
+  font-size: 0.85rem;
+  color: var(--text);
+  margin-top: 2px !important;
+}
+
+.match-badge {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.job-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.88rem;
+}
+
+.job-card-location,
+.job-card-salary {
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.job-card-skills {
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.job-card-action {
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* War Room & Controls */
 .war-room-controls,
 .comparator-selectors {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 12px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  align-items: end;
+  padding: 14px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 
-.war-room-controls label,
-.comparator-selectors label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+.war-room-controls label:has(input[type='checkbox']) {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  cursor: pointer;
 }
 
 .application-grid,
-.offer-comparison,
+.offer-comparison {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 16px;
+}
+
 .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
 }
 
 .application-card,
 .offer-card,
 .stats-grid article {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  background: var(--surface);
+}
+
+.stats-grid article {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--surface-subtle);
+}
+
+.stats-grid article strong {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--text-h);
+  line-height: 1.2;
+}
+
+.stats-grid article span {
+  font-size: 0.85rem;
+  color: var(--text);
 }
 
 .application-card {
-    display: grid;
-    gap: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.application-card:hover {
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-md);
+}
+
+.application-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.application-role {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-top: 2px !important;
+}
+
+.application-card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  font-size: 0.88rem;
+  padding: 10px 12px;
+  background: var(--surface-subtle);
+  border-radius: 8px;
+}
+
+.application-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.offer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.offer-card h4 {
+  font-size: 1.05rem;
+  margin-top: 4px;
 }
 
 .ghosting-badge,
 .recommendation {
-    display: inline-block;
-    border-radius: 999px;
-    background: #fee2e2;
-    color: #991b1b;
-    padding: 3px 8px;
-    font-size: 13px;
-    font-weight: 700;
+  display: inline-block;
+  align-self: flex-start;
+  border-radius: 999px;
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .recommendation {
-    background: #dcfce7;
-    color: #166534;
+  background: #dcfce7;
+  color: #166534;
 }
 
 .conflict-banner {
-    border: 1px solid #f59e0b;
-    background: rgba(245, 158, 11, 0.12);
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 12px;
+  border: 1px solid #f59e0b;
+  background: rgba(245, 158, 11, 0.12);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-weight: 500;
+  color: var(--text-h);
 }
 
+/* Detail Lamaran */
+.detail-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.detail-headline {
+  font-size: 1.08rem;
+  color: var(--text-h);
+}
+
+.detail-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px 16px;
+  font-size: 0.9rem;
+}
+
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.status-transition-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  align-items: end;
+}
+
+.detail-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.detail-subcard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.subcard-meta {
+  font-size: 0.88rem;
+}
+
+.checklist-list,
+.activity-log-list {
+  list-style: none;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checklist-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 0 !important;
+}
+
+.checklist-list li label {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.small-btn {
+  padding: 4px 10px !important;
+  font-size: 0.8rem !important;
+}
+
+.activity-log-list li {
+  padding: 8px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin: 0 !important;
+}
+
+.inline-add-form {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 8px !important;
+  align-items: stretch;
+  margin-top: auto;
+}
+
+.inline-add-form input {
+  flex: 1;
+}
+
+.inline-add-form button {
+  white-space: nowrap;
+  align-self: stretch;
+}
+
+/* Interview Prep Timer */
+.interview-timer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.timer-step {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.timer-question {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.timer-display {
+  font-family: var(--mono);
+  font-size: 2rem;
+  color: var(--text-h);
+}
+
+.timer-alert {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* Undo Toast */
 .undo-toast {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 20;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--bg);
-    box-shadow: var(--shadow);
-    padding: 12px 16px;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 20;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  padding: 12px 16px;
 }

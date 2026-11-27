@@ -59,45 +59,82 @@ export default function App() {
   }))
 
   return (
-    <main>
-      <h1>Aku Mw Magang</h1>
-      <nav className="app-nav" aria-label="Navigasi utama">
-        <button type="button" onClick={() => setActivePage('explore')}>Eksplorasi</button>
-        <button type="button" onClick={() => setActivePage('pipeline')}>War Room</button>
-        <button type="button" onClick={() => setActivePage('dashboard')}>Dashboard</button>
-      </nav>
+    <main className="app-shell">
+      <header className="app-header">
+        <div className="app-brand">
+          <span className="app-kicker">Internship Tracker</span>
+          <h1>Aku Mw Magang</h1>
+        </div>
+        <nav className="app-nav" aria-label="Navigasi utama">
+          <button
+            type="button"
+            className={activePage === 'explore' ? 'is-active' : undefined}
+            aria-current={activePage === 'explore' ? 'page' : undefined}
+            onClick={() => setActivePage('explore')}
+          >
+            Eksplorasi
+          </button>
+          <button
+            type="button"
+            className={activePage === 'pipeline' ? 'is-active' : undefined}
+            aria-current={activePage === 'pipeline' ? 'page' : undefined}
+            onClick={() => setActivePage('pipeline')}
+          >
+            War Room
+          </button>
+          <button
+            type="button"
+            className={activePage === 'dashboard' ? 'is-active' : undefined}
+            aria-current={activePage === 'dashboard' ? 'page' : undefined}
+            onClick={() => setActivePage('dashboard')}
+          >
+            Dashboard
+          </button>
+        </nav>
+      </header>
 
       {activePage === 'explore' && (
-        <>
-          <SkillProfile skills={skills} onSkillsChange={setSkills} />
-          <ManualApplicationForm applications={allApplications} onAdd={addManualApplication} />
+        <div className="explore-layout">
+          <div className="explore-top-grid">
+            <SkillProfile skills={skills} onSkillsChange={setSkills} />
+            <ManualApplicationForm applications={allApplications} onAdd={addManualApplication} />
+          </div>
           <JobCatalog skills={skills} applications={applications} onSave={saveToWishlist} />
-        </>
+        </div>
       )}
 
       {activePage === 'pipeline' && (
-        <WarRoom
-          applications={allApplications}
-          skills={skills}
-          onChange={setAllApplications}
-          onSelect={setSelectedId}
-        />
+        <div className="pipeline-layout">
+          <WarRoom
+            applications={allApplications}
+            skills={skills}
+            onChange={setAllApplications}
+            onSelect={setSelectedId}
+          />
+          {/* {Dyfan} (poin 4) detail tampil kalau ada lamaran yang dipilih.
+              key = id biar isian form kereset otomatis tiap ganti lamaran */}
+          {selectedApplication && (
+            <ApplicationDetail
+              key={selectedApplication.id}
+              application={selectedApplication}
+              onChange={updateApplication}
+            />
+          )}
+        </div>
       )}
 
       {activePage === 'dashboard' && (
         <Dashboard applications={allApplications} skills={skills} />
       )}
 
-      {/* {Dyfan} (poin 4) detail tampil kalau ada lamaran yang dipilih.
-          key = id biar isian form kereset otomatis tiap ganti lamaran */}
-      {selectedApplication && (
+      {/* Tetap tampilkan detail jika dipilih dan pengguna pindah tab selain pipeline */}
+      {activePage !== 'pipeline' && selectedApplication && (
         <ApplicationDetail
           key={selectedApplication.id}
           application={selectedApplication}
           onChange={updateApplication}
         />
       )}
-
     </main>
   )
 }

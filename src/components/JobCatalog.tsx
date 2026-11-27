@@ -83,22 +83,22 @@ export function JobCatalog({ skills, applications, onSave }: JobCatalogProps) {
     .sort((a, b) => b.match.score - a.match.score)
 
   return (
-    <section>
+    <section className="application-panel job-catalog">
       <h2>Eksplorasi Lowongan</h2>
 
-      <label>
-        Sumber data{' '}
-        <select
-          value={source}
-          onChange={(event) => changeSource(event.target.value === 'api' ? 'api' : 'local')}
-        >
-          <option value="local">Fallback Lokal</option>
-          <option value="api">Live API</option>
-        </select>
-      </label>
-
-      <p>
+      <div className="catalog-controls">
         <label>
+          Sumber data{' '}
+          <select
+            value={source}
+            onChange={(event) => changeSource(event.target.value === 'api' ? 'api' : 'local')}
+          >
+            <option value="local">Fallback Lokal</option>
+            <option value="api">Live API</option>
+          </select>
+        </label>
+
+        <label className="catalog-search">
           Cari lowongan{' '}
           <input
             value={keyword}
@@ -106,48 +106,52 @@ export function JobCatalog({ skills, applications, onSave }: JobCatalogProps) {
             placeholder="Posisi, perusahaan, atau skill"
           />
         </label>
-      </p>
 
-      <label>
-        Kategori{' '}
-        <select value={category} onChange={(event) => setCategory(event.target.value)}>
-          <option value="">Semua kategori</option>
-          {categories.map((name) => <option key={name}>{name}</option>)}
-        </select>
-      </label>
+        <label>
+          Kategori{' '}
+          <select value={category} onChange={(event) => setCategory(event.target.value)}>
+            <option value="">Semua kategori</option>
+            {categories.map((name) => <option key={name}>{name}</option>)}
+          </select>
+        </label>
+      </div>
 
-      {loading && <p role="status">Memuat lowongan...</p>}
+      {loading && <p className="status-banner" role="status">Memuat lowongan...</p>}
 
       {error && (
-        <div>
+        <div className="error-box">
           <p role="alert">{error}</p>
-          <button type="button" onClick={() => setAttempt(attempt + 1)}>
-            Coba Lagi
-          </button>
-          {source === 'api' && (
-            <button type="button" onClick={() => changeSource('local')}>
-              Pakai Fallback Lokal
+          <div className="button-group">
+            <button type="button" onClick={() => setAttempt(attempt + 1)}>
+              Coba Lagi
             </button>
-          )}
+            {source === 'api' && (
+              <button type="button" onClick={() => changeSource('local')}>
+                Pakai Fallback Lokal
+              </button>
+            )}
+          </div>
         </div>
       )}
 
       {!loading && !error && (
         <>
-          <p role="status">
+          <p className="catalog-summary" role="status">
             {visibleJobs.length > 0
               ? `${visibleJobs.length} lowongan ditemukan`
               : 'Tidak ada lowongan yang cocok.'}
           </p>
-          {visibleJobs.map(({ job, match }) => (
-            <JobCard
-              key={job.id}
-              job={job}
-              match={match}
-              alreadyApplied={alreadyApplied(job)}
-              onSave={onSave}
-            />
-          ))}
+          <div className="job-grid">
+            {visibleJobs.map(({ job, match }) => (
+              <JobCard
+                key={job.id}
+                job={job}
+                match={match}
+                alreadyApplied={alreadyApplied(job)}
+                onSave={onSave}
+              />
+            ))}
+          </div>
         </>
       )}
     </section>

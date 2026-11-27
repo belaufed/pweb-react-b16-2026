@@ -48,33 +48,36 @@ export function SkillProfile({ skills, onSkillsChange }: SkillProfileProps) {
   }
 
   return (
-    <section>
+    <section className="application-panel skill-profile">
       <h2>Profil Skill Kapten</h2>
 
-      <form onSubmit={handleAddSkill}>
+      <form className="inline-form" onSubmit={handleAddSkill}>
         <label htmlFor="skill-input">Nama skill</label>
-        <input
-          id="skill-input"
-          value={input}
-          onChange={(event) => handleInputChange(event.target.value)}
-          placeholder="Contoh: Docker"
-          aria-invalid={Boolean(error)}
-          aria-describedby={error ? 'skill-error' : undefined}
-        />
-        <button type="submit">Tambah skill</button>
+        <div className="input-action-row">
+          <input
+            id="skill-input"
+            value={input}
+            onChange={(event) => handleInputChange(event.target.value)}
+            placeholder="Contoh: Docker"
+            aria-invalid={Boolean(error)}
+            aria-describedby={error ? 'skill-error' : undefined}
+          />
+          <button type="submit">Tambah skill</button>
+        </div>
       </form>
 
       {error && <p id="skill-error" role="alert">{error}</p>}
 
       {skills.length === 0 ? (
-        <p>Belum ada skill di profil.</p>
+        <p className="muted-text">Belum ada skill di profil.</p>
       ) : (
-        <ul>
+        <ul className="skill-chip-list">
           {skills.map((skill) => (
-            <li key={skill}>
-              {skill}{' '}
+            <li key={skill} className="skill-chip">
+              <span>{skill}</span>{' '}
               <button
                 type="button"
+                className="chip-remove-btn"
                 aria-label={`Hapus skill ${skill}`}
                 onClick={() => handleRemoveSkill(skill)}
               >

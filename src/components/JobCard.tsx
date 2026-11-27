@@ -24,27 +24,33 @@ export function JobCard({ job, match, alreadyApplied, onSave }: JobCardProps) {
   }
 
   return (
-    <article>
-      <h3>{job.title}</h3>
-      <p>{job.company_name} · {job.category}</p>
-      <p>{job.candidate_required_location}</p>
-      <p>Gaji: {job.salary || 'Belum dicantumkan'}</p>
+    <article className="job-card">
+      <div className="job-card-header">
+        <div>
+          <h3>{job.title}</h3>
+          <p className="job-card-meta">{job.company_name} · {job.category}</p>
+        </div>
+        <strong
+          className="match-badge"
+          style={{
+            backgroundColor: getBadgeColor(match.score),
+            color: '#222',
+            padding: '4px 10px',
+            borderRadius: '999px',
+          }}
+        >
+          Match {match.score}%
+        </strong>
+      </div>
 
-      <strong
-        style={{
-          backgroundColor: getBadgeColor(match.score),
-          color: '#222',
-          padding: '3px 8px',
-          borderRadius: '6px',
-        }}
-      >
-        Match {match.score}%
-      </strong>
+      <div className="job-card-body">
+        <p className="job-card-location">{job.candidate_required_location}</p>
+        <p className="job-card-salary">Gaji: {job.salary || 'Belum dicantumkan'}</p>
+        <p className="job-card-skills">Skill cocok: {match.matchedSkills.join(', ') || 'Belum ada'}</p>
+        <p className="job-card-skills">Skill yang kurang: {match.missingSkills.join(', ') || 'Tidak ada'}</p>
+      </div>
 
-      <p>Skill cocok: {match.matchedSkills.join(', ') || 'Belum ada'}</p>
-      <p>Skill yang kurang: {match.missingSkills.join(', ') || 'Tidak ada'}</p>
-
-      <button type="button" onClick={handleSave} disabled={alreadyApplied}>
+      <button type="button" className="job-card-action" onClick={handleSave} disabled={alreadyApplied}>
         {alreadyApplied ? 'Sudah Dilamar' : 'Simpan ke Wishlist'}
       </button>
     </article>

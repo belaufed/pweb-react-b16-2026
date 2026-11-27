@@ -49,15 +49,15 @@ export function Checklist({ items, onChange }: ChecklistProps) {
     }
 
     return (
-        <section>
+        <section className="detail-subcard">
             <h3>Checklist</h3>
 
             {/* Progress: jumlah yang selesai / total */}
-            <p>Progress: {doneCount}/{total}</p>
+            <p className="subcard-meta">Progress: <strong>{doneCount}/{total}</strong></p>
 
-            {total === 0 && <p>Belum ada tugas.</p>}
+            {total === 0 && <p className="muted-text">Belum ada tugas.</p>}
 
-            <ul>
+            <ul className="checklist-list">
                 {items.map((item) => (
                     <li key={item.id}>
                         <label>
@@ -71,14 +71,14 @@ export function Checklist({ items, onChange }: ChecklistProps) {
                                 {item.text}
                             </span>
                         </label>{' '}
-                        <button type="button" onClick={() => handleDelete(item.id)}>
+                        <button type="button" className="small-btn" onClick={() => handleDelete(item.id)}>
                             Hapus
                         </button>
                     </li>
                 ))}
             </ul>
 
-            <form onSubmit={handleAdd}>
+            <form className="inline-add-form" onSubmit={handleAdd}>
                 <input
                     value={text}
                     onChange={(event) => setText(event.target.value)} // update state tiap ngetik
