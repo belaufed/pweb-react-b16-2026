@@ -7,7 +7,7 @@ export const allowedTransitions: Record<ApplicationStatus, ApplicationStatus[]> 
     Wishlist: ['Applied'], // dari Wishlist cuma boleh lanjut ke Applied
     Applied: ['Screening', 'Rejected'], // abis ngelamar: lolos seleksi berkas atau ditolak
     Screening: ['Interview', 'Rejected'], // abis screening: interview atau ditolak
-    Interview: ['Offer', 'Rejected'], // abis interview: dapet offer atau ditolak
+    Interview: ['Offer', 'Rejected', 'Ghosted'], // abis interview: offer, ditolak, atau di-ghosting (sesuai wireframe soal)
     Offer: [], // udah offer, nggak ada tujuan lagi
     Rejected: [], // udah ditolak, selesai
     Ghosted: ['Screening'],

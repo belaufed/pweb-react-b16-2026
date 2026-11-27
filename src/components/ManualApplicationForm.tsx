@@ -2,7 +2,8 @@
 
 import { useRef, useState } from 'react' // useState buat nyimpen isi input, useRef buat nunjuk elemen input
 import type { FormEvent } from 'react' // tipe event pas form di-submit
-import type { Application } from '../types/Application' // cetakan lamaran dari poin 1
+import type { Application, WorkMode } from '../types/Application' // cetakan lamaran dari poin 1
+import { WORK_MODES } from '../types/Application' // daftar mode kerja buat dropdown
 import { createApplication } from '../utils/createApplication' // fungsi bikin lamaran dari poin 2
 
 //Data apa aja yang dikasih App.tsx ke form ini
@@ -25,6 +26,7 @@ export function ManualApplicationForm({ applications, onAdd }: ManualApplication
     const [cvVersion, setCvVersion] = useState('') // isi input versi CV (cuma muncul kalau Applied)
     const [appliedDate, setAppliedDate] = useState('') // isi input tanggal melamar (cuma muncul kalau Applied)
     const [requiredSkills, setRequiredSkills] = useState('')
+    const [workMode, setWorkMode] = useState<WorkMode | ''>('') // mode kerja (opsional saat membuat lamaran)
     const [errors, setErrors] = useState<Errors>({}) // pesan error per field
 
     // Ref buat fokus otomatis ke input yang bermasalah ===
@@ -70,6 +72,7 @@ export function ManualApplicationForm({ applications, onAdd }: ManualApplication
             status, // Wishlist atau Applied
             cvVersion: status === 'Applied' ? cvVersion : null, // CV cuma dikirim kalau Applied
             appliedDate: status === 'Applied' ? appliedDate : null, // tanggal cuma dikirim kalau Applied
+            workMode: workMode || null, // mode kerja, null kalau belum dipilih
             requiredSkills: requiredSkills.split(',').map((skill) => skill.trim()).filter(Boolean),
         })
 
@@ -88,6 +91,7 @@ export function ManualApplicationForm({ applications, onAdd }: ManualApplication
         setCvVersion('') // kosongin versi CV
         setAppliedDate('') // kosongin tanggal
         setRequiredSkills('')
+        setWorkMode('')
         setErrors({}) // hapus semua pesan error
     }
 
@@ -121,6 +125,26 @@ export function ManualApplicationForm({ applications, onAdd }: ManualApplication
                         />
                     </label>
                     {errors.role && <span role="alert"> {errors.role}</span>}
+                </p>
+
+                <p>
+                    <label>
+                        Mode Kerja{' '}
+                        <select
+                            value={workMode}
+                            onChange={(event) => {
+                                // cocokin sama daftar WORK_MODES, kalau nggak ketemu berarti ''
+                                const picked: WorkMode | '' =
+                                    WORK_MODES.find((mode) => mode === event.target.value) ?? ''
+                                setWorkMode(picked)
+                            }}
+                        >
+                            <option value="">Pilih mode kerja</option>
+                            {WORK_MODES.map((mode) => (
+                                <option key={mode} value={mode}>{mode}</option>
+                            ))}
+                        </select>
+                    </label>
                 </p>
 
                 <p>

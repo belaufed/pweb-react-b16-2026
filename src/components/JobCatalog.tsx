@@ -18,7 +18,7 @@ function normalize(text: string) {
 
 // Katalog ambil lowongan, lalu urutkan hasilnya sesuai skill Kapten.
 export function JobCatalog({ skills, applications, onSave }: JobCatalogProps) {
-  const [source, setSource] = useState<JobSource>('local')
+  const [source, setSource] = useState<JobSource>('api')
   const [jobs, setJobs] = useState<JobListing[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')

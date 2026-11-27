@@ -54,6 +54,12 @@ export function Checklist({ items, onChange }: ChecklistProps) {
 
             {/* Progress: jumlah yang selesai / total */}
             <p className="subcard-meta">Progress: <strong>{doneCount}/{total}</strong></p>
+            <progress
+                className="checklist-progress"
+                value={doneCount}
+                max={Math.max(total, 1)}
+                aria-label={`Progress checklist ${doneCount} dari ${total} selesai`}
+            />
 
             {total === 0 && <p className="muted-text">Belum ada tugas.</p>}
 
